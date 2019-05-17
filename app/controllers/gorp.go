@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 
-	"tax-calculator/app/models"
+	"github.com/rl404/tax-calculator/app/models"
 )
 
 var Dbm *gorp.DbMap

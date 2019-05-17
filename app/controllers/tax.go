@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
-	"tax-calculator/app/models"
+	"github.com/rl404/tax-calculator/app/models"
 )
 
 type Tax struct {

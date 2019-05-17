@@ -1,11 +1,10 @@
-{{set . "title" "Anychart Golang template"}}
-{{append . "moreStyles" "css/style.css"}}
+{{set . "title" "Home"}}
 {{template "header.html" .}}
 
 <header class="jumbotron" style="background-color:#A9F16C">
   <div class="container">
     <div class="row">
-      <h1>{{.label}}</h1>
+      <h1>It works!</h1>
       <p></p>
     </div>
   </div>
@@ -15,18 +14,15 @@
   <div class="row">
     <div class="span6">
       {{template "flash.html" .}}
+
+      <form action="/App/Hello" method="GET">
+        {{with $field := field "str" .}}
+            <input type="text" name="{{$field.Name}}" value="{{$field.Flash}}"/><br/>
+        {{end}}
+        <input type="submit" value="Say hello!" />
+      </form>
     </div>
-    <div id="container"></div>
   </div>
 </div>
-
-<script>
-  anychart.onDocumentReady(function() {
-    var chart = anychart.pie(JSON.parse({{raw .chartData}}));
-    chart.title("{{.chartTitle}}");
-    chart.container("container");
-    chart.draw();
-  });
-</script>
 
 {{template "footer.html" .}}

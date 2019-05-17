@@ -1,9 +1,19 @@
 version: "3"
 
 services:
+  db:
+    image: mysql:5.7
+    environment:
+        - MYSQL_ROOT_PASSWORD=12345
+        - MYSQL_DATABASE=revel_db
+        - MYSQL_USER=root
+        - MYSQL_PASSWORD=123
   web:
     build: .
+    command: revel run github.com/rl404/tax-calculator
+    volumes:
+        - ./:/go/src/github.com/rl404/tax-calculator
     ports:
-      - "5000:5000"
-  revel:
-    image: golang:1.6.1-alpine
+        - 9001:9001
+    depends_on:
+        - db
