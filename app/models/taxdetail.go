@@ -6,6 +6,7 @@ type TaxDetail struct {
 	Refundable 	int    		`json:"refundable"`
 }
 
+// Static detail since it is not saved to db
 var detailTax = map[int]TaxDetail{
 	1: TaxDetail{
 		TaxCode: 1,
