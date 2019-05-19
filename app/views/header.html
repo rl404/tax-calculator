@@ -7,11 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-3.3.6.min.css">
     <link rel="shortcut icon" type="image/png" href="/public/img/favicon.png">
-    <link rel="stylesheet" href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css"/>
-    <link rel="stylesheet" href="https://cdn.anychart.com/releases/v8/fonts/css/anychart.min.css"/>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-vml.min.js"></script>
     <script src="/public/js/jquery-2.2.4.min.js"></script>
     <script src="/public/js/bootstrap-3.3.6.min.js"></script>
     {{range .moreStyles}}
@@ -22,3 +17,13 @@
     {{end}}
   </head>
   <body>
+    <header class="jumbotron tax-header-title">
+      <div class="container">
+        <div class="row">
+          <a href="/tax/index" class="no-style-link">
+            <h1>Tax-Calculator</h1>
+            <p>A simple web application to calculate tax using Go language</p>
+          </a>
+        </div>
+      </div>
+    </header>

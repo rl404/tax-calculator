@@ -4,6 +4,7 @@
 module:testrunner
 
 GET     /                                       App.Index
+GET		/tax									Tax.Index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

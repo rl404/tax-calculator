@@ -1,0 +1,62 @@
+{{set . "title" "Create"}}
+{{template "header.html" .}}
+
+<div class="container">
+
+	{{if .hasError}}
+	<div class="alert alert-danger">
+		{{.hasError}}
+	</div>
+	{{end}}
+
+	<div class="row">
+		<h3>Bill Form</h3>
+	</div>
+	<div class="row">
+		<form action="/tax/create" method="POST">
+			<table class="table" id="tax-table">
+				<thead>
+					<tr>
+						<th class="text-center">No</th>
+						<th>Name</th>
+						<th>Tax Code</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tr class="tax-row">
+					<td class="text-center">1.</td>
+					<td><input type="text" class="form-control" placeholder="name" name="name"></td>
+					<td>
+						<select class="form-control" name="taxcode">
+							<option value=""> - Select Tax Type - </option>
+							{{range $i, $j := .taxTypeList}}
+								<option value="{{$j.TaxCode}}">{{$j.TaxCode}} - {{$j.Name}}</option>
+							{{end}}
+						</select>
+					</td>
+					<td><input type="number" class="form-control" placeholder="1000" name="price"></td>
+				</tr>
+				<tr class="tax-row" id="empty-tax-form" style="display: none">
+					<td class="text-center"></td>
+					<td><input type="text" class="form-control" placeholder="name" name="name"></td>
+					<td>
+						<select class="form-control" name="taxcode">
+							<option value=""> - Select Tax Type - </option>
+							{{range $i, $j := .taxTypeList}}
+								<option value="{{$j.TaxCode}}">{{$j.TaxCode}} - {{$j.Name}}</option>
+							{{end}}
+						</select>
+					</td>
+					<td><input type="number" class="form-control" placeholder="1000" name="price"></td>
+				</tr>
+				<tr class="text-center" id="add-more-row">
+					<td colspan=4><button class="btn btn-info" id="add-more-tax">Add more</button></td>
+				</tr>
+			</table>
+			<a href="/tax/index" class="btn btn-danger" name="submit">Back</a>
+			<button type="submit" class="btn btn-success" name="submit">Submit</button>
+		</form>
+	</div>
+</div>
+
+{{template "footer.html" .}}

@@ -10,17 +10,21 @@ type TaxDetail struct {
 var detailTax = map[int]TaxDetail{
 	1: TaxDetail{
 		TaxCode: 1,
-		Name: "food & beverage",
+		Name: "Food & Beverage",
 		Refundable: 1,
 	},
 	2: TaxDetail{
 		TaxCode: 2,
-		Name: "tobacco",
+		Name: "Tobacco",
 		Refundable: 0,
 	},
 	3: TaxDetail{
 		TaxCode: 3,
-		Name: "entertainment",
+		Name: "Entertainment",
 		Refundable: 0,
 	},
+}
+
+func (t TaxDetail) GetDetailList() map[int]TaxDetail {
+	return detailTax
 }
