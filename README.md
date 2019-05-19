@@ -14,6 +14,8 @@ docker-compose up
 ```
 Web can be access from **[http://localhost:9001](http://localhost:9001)**
 
+Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/tax)**
+
 ## API Documentation
 - ### Create a New Bill
     Send a list of tax name, tax code, and price and return a bill with detailed tax.
@@ -141,3 +143,33 @@ Web can be access from **[http://localhost:9001](http://localhost:9001)**
          }
          </pre>
          </details>
+## Database Documentation
+- **Name**: revel_db
+- **Type**: MySQL
+- **Port**: 3306
+- **User**: revel
+- **Password**: 123
+- **Tables**
+    - `bill` <br>
+        Main table to keep bill detail. Has one-to-many relationship with `tax` table.
+        
+        Column Name | Type | Description
+        --- | --- | ---
+        id | int(11) | AUTO_INCREMENT
+        bill_id | int(11) | Unique bill id / number
+        price_total | double | Total price of all bill's product
+        tax_total | double | Total tax of all bill's tax
+        grand_total | double | Total price and tax
+        created_date | bigint(26) | Created date in Unix timestamp
+        
+    - `tax` <br>
+        Table to keep list of tax for each bill. Has many-to-one relationship with `bill` table.
+        
+        Column Name | Type | Description
+        --- | --- | ---
+        id | int(11) | AUTO_INCREMENT
+        bill_id | int(11) | Unique bill id / number
+        name | varchar(255) | Name of the product
+        tax_code | int(11) | Tax Code of the product <br> 1 : Food & Beverage <br> 2 : Tobacco <br> 3 : Entertainment
+        price | double | Price of the product
+        created_date | bigint(26) | Created date in Unix timestamp
