@@ -173,3 +173,5 @@ Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/ta
         tax_code | int(11) | Tax Code of the product <br> 1 : Food & Beverage <br> 2 : Tobacco <br> 3 : Entertainment
         price | double | Price of the product
         created_date | bigint(26) | Created date in Unix timestamp
+  
+*\*Database and tables are created and checked (if exist) automatically when starting web app*
