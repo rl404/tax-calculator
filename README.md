@@ -29,17 +29,17 @@ Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/ta
             "name": "Lucky Stretch",
             "taxcode": 2,
             "price": 1000
-         }, 
+         },
          {
             "name": "Big Mac",
             "taxcode": 1,
             "price": 1000
-         }, 
+         },
          {
             "name": "Movie",
             "taxcode": 3,
             "price": 150
-         }] 
+         }]
          </pre>
          </details>
     - **Response**: Http response json with Bill model
@@ -95,7 +95,7 @@ Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/ta
     - **Required param**: `bill`
         <details>
          <summary>Example</summary>
-         <code>/api/getbill?bill=1</code>
+         <code>/api/getbill?bill=3</code>
         </details>
     - **Response**: Http response json with Bill model
          <details>
@@ -152,7 +152,7 @@ Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/ta
 - **Tables**
     - `bill` <br>
         Main table to keep bill detail. Has one-to-many relationship with `tax` table.
-        
+
         Column Name | Type | Description
         --- | --- | ---
         id | int(11) | AUTO_INCREMENT
@@ -161,10 +161,10 @@ Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/ta
         tax_total | double | Total tax of all bill's tax
         grand_total | double | Total price and tax
         created_date | bigint(26) | Created date in Unix timestamp
-        
+
     - `tax` <br>
         Table to keep list of tax for each bill. Has many-to-one relationship with `bill` table.
-        
+
         Column Name | Type | Description
         --- | --- | ---
         id | int(11) | AUTO_INCREMENT
@@ -173,5 +173,5 @@ Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/ta
         tax_code | int(11) | Tax Code of the product <br> 1 : Food & Beverage <br> 2 : Tobacco <br> 3 : Entertainment
         price | double | Price of the product
         created_date | bigint(26) | Created date in Unix timestamp
-  
+
 *\*Database and tables are created and checked (if exist) automatically when starting web app*
