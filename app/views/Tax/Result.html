@@ -17,7 +17,10 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th colspan=7>Bill Number: {{.billModel.billid}}</th>
+					<th colspan=7>
+						<span class="pull-left">Bill Number: {{.billModel.billid}}</span>
+						<span class="pull-right">Created Date: {{.billDate}}</span>
+					</th>
 				</tr>
 				<tr>
 					<th class="text-center">Name</th>

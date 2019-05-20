@@ -4,6 +4,7 @@ import (
 	"github.com/revel/revel"
 	"encoding/json"
 	"strconv"
+	"time"
 	"fmt"
 
 	"github.com/rl404/tax-calculator/app/models"
@@ -85,8 +86,10 @@ func (c Tax) Result() revel.Result {
 		return c.Render(hasError, moreStyles)
 	}
 
-	billModel := responseArr["data"]
-	return c.Render(billModel, moreStyles)
+	billModel := responseArr["data"].(map[string]interface{})
+	rawBillDate := int64(billModel["createddate"].(float64))
+	billDate := time.Unix(rawBillDate, 0).Format("2006-Jan-02 15:04:05")
+	return c.Render(billDate, billModel, moreStyles)
 }
 
 func (c Tax) Find() revel.Result {
