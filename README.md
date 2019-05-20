@@ -21,7 +21,7 @@ Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/ta
     Send a list of tax name, tax code, and price and return a bill with detailed tax.
     - **URL**: `/api/createbill`
     - **Method**: `POST`
-    - **Required data**: List of tax model
+    - **Required data**: Json of List of tax model
          <details>
          <summary>Example</summary>
          <pre>

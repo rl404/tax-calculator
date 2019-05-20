@@ -11,7 +11,7 @@ services:
     healthcheck:
         test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
         timeout: 10s
-        retries: 10
+        retries: 30
   web:
     build: .
     ports:
