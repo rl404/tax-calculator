@@ -1,3 +1,5 @@
+> This is just a sample Go web application using Revel and Docker
+
 # Tax-Calculator
 A simple web application to calculate tax using Go language.
 
