@@ -1,5 +1,6 @@
 package constant
 
+// List of tax code.
 const (
 	FoodCode          int = 1
 	TobaccoCode       int = 2
