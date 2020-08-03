@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "e2d7f3a4-895b-4573-b3af-ec8eff3006fa",
+		"name": "Tax Calculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{tax_url}}/v1/list?user_id=1",
+					"host": [
+						"{{tax_url}}"
+					],
+					"path": [
+						"v1",
+						"list"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": 1,\n    \"name\": \"Movie\",\n    \"tax_code\": 3,\n    \"price\": 150\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tax_url}}/v1/add",
+					"host": [
+						"{{tax_url}}"
+					],
+					"path": [
+						"v1",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{tax_url}}/v1/delete/:id",
+					"host": [
+						"{{tax_url}}"
+					],
+					"path": [
+						"v1",
+						"delete",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "385bb5ea-8e22-448a-98dc-016b826894ad",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "86683ff5-a199-4755-8b35-aba47bbd14ca",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0b8001d0-13ac-4103-b153-3f7c3e153d07",
+			"key": "tax_url",
+			"value": "http://localhost:32001"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

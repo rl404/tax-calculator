@@ -1,0 +1,35 @@
+version: "2.4"
+
+services:
+  tax_calculator:
+    container_name: tax-calculator
+    image: taxcalculator:latest
+    build:
+      context: ./..
+      dockerfile: ./build/package/Dockerfile
+    ports:
+      - 32001:32001
+    network_mode: host
+    env_file: ./../config/config.env
+    restart: on-failure
+    depends_on:
+      tc_db:
+        condition: service_healthy
+  tc_db:
+    container_name: tc_db
+    image: postgres:12.3-alpine
+    environment:
+      POSTGRES_PASSWORD: tcPass123
+    ports:
+      - 32002:5432
+    volumes:
+      - postgres-volume:/var/lib/postgres/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-volume:

@@ -1,179 +1,94 @@
-> This is just a sample Go web application using Revel and Docker
+> This is just a sample backend application.
 
 # Tax-Calculator
-A simple web application to calculate tax using Go language.
 
-## Requirement
-- [Git](https://git-scm.com/downloads)
-- [Docker](https://docs.docker.com/install/) & [Docker Compose](https://docs.docker.com/compose/install/)
+A simple user's tax calculator system.
 
-## Installation
-Run the following command
+## Features
+
+- Save and retrieve user tax
+- Add user tax
+- Delete user tax
+
+## Requirements
+
+- [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/)
+- [Docker compose](https://docs.docker.com/compose/)
+
+## Quick Start
+
+1. `git clone https://github.com/rl404/tax-calculator.git`
+2. `cd tax-calculator`
+3. `make`
+4. Wait until `server listen at :32001`
+5. Endpoints are ready to use.
+
+#### Remove containers
+
 ```
-git clone https://github.com/rl404/tax-calculator
-cd tax-calculator
-docker-compose up
+make docker-stop
+make docker-rm
 ```
-Web can be access from **[http://localhost:9001](http://localhost:9001)**
 
-Web UI can be access from **[http://localhost:9001/tax](http://localhost:9001/tax)**
+## Endpoints
 
-## API Documentation
-- ### Create a New Bill
-    Send a list of tax name, tax code, and price and return a bill with detailed tax.
-    - **URL**: `/api/createbill`
-    - **Method**: `POST`
-    - **Required data**: Json of List of tax model
-         <details>
-         <summary>Example</summary>
-         <pre>
-         [{
-            "name": "Lucky Stretch",
-            "taxcode": 2,
-            "price": 1000
-         },
-         {
-            "name": "Big Mac",
-            "taxcode": 1,
-            "price": 1000
-         },
-         {
-            "name": "Movie",
-            "taxcode": 3,
-            "price": 150
-         }]
-         </pre>
-         </details>
-    - **Response**: Http response json with Bill model
-      <details>
-         <summary>Example</summary>
-         <pre>
-         {
-             "data": {
-                 "billid": 3,
-                 "detail": [
-                     {
-                         "name": "Lucky Stretch",
-                         "taxcode": 2,
-                         "price": 1000,
-                         "type": "Tobacco",
-                         "refundable": "no",
-                         "tax": 30,
-                         "amount": 1030
-                     },
-                     {
-                         "name": "Big Mac",
-                         "taxcode": 1,
-                         "price": 1000,
-                         "type": "Food & Beverage",
-                         "refundable": "yes",
-                         "tax": 100,
-                         "amount": 1100
-                     },
-                     {
-                         "name": "Movie",
-                         "taxcode": 3,
-                         "price": 150,
-                         "type": "Entertainment",
-                         "refundable": "no",
-                         "tax": 0.5,
-                         "amount": 150.5
-                     }
-                 ],
-                 "pricetotal": 2150,
-                 "taxtotal": 130.5,
-                 "grandtotal": 2280.5,
-                 "createddate": 1558276347
-             },
-             "message": "Success",
-             "status": 200
-         }
-         </pre>
-         </details>
-- ### Get Bill Detail
-    Get bill detail with list of tax
-    - **URL**: `/api/getbill`
-    - **Method**: `GET`
-    - **Required param**: `bill`
-        <details>
-         <summary>Example</summary>
-         <code>/api/getbill?bill=3</code>
-        </details>
-    - **Response**: Http response json with Bill model
-         <details>
-         <summary>Example</summary>
-         <pre>
-         {
-             "data": {
-                 "billid": 3,
-                 "detail": [
-                     {
-                         "name": "Lucky Stretch",
-                         "taxcode": 2,
-                         "price": 1000,
-                         "type": "Tobacco",
-                         "refundable": "no",
-                         "tax": 30,
-                         "amount": 1030
-                     },
-                     {
-                         "name": "Big Mac",
-                         "taxcode": 1,
-                         "price": 1000,
-                         "type": "Food & Beverage",
-                         "refundable": "yes",
-                         "tax": 100,
-                         "amount": 1100
-                     },
-                     {
-                         "name": "Movie",
-                         "taxcode": 3,
-                         "price": 150,
-                         "type": "Entertainment",
-                         "refundable": "no",
-                         "tax": 0.5,
-                         "amount": 150.5
-                     }
-                 ],
-                 "pricetotal": 2150,
-                 "taxtotal": 130.5,
-                 "grandtotal": 2280.5,
-                 "createddate": 1558276347
-             },
-             "message": "Success",
-             "status": 200
-         }
-         </pre>
-         </details>
-## Database Documentation
-- **Name**: revel_db
-- **Type**: MySQL
-- **Port**: 3306
-- **User**: revel
-- **Password**: 123
-- **Tables**
-    - `bill` <br>
-        Main table to keep bill detail. Has one-to-many relationship with `tax` table.
+- `GET` - `/v1/list`
+- `POST` - `/v1/add`
+- `DELETE` - `/v1/delete`
 
-        Column Name | Type | Description
-        --- | --- | ---
-        id | int(11) | AUTO_INCREMENT
-        bill_id | int(11) | Unique bill id / number
-        price_total | double | Total price of all bill's product
-        tax_total | double | Total tax of all bill's tax
-        grand_total | double | Total price and tax
-        created_date | bigint(26) | Created date in Unix timestamp
+*import the `postman_collection.json` for more details.*
 
-    - `tax` <br>
-        Table to keep list of tax for each bill. Has many-to-one relationship with `bill` table.
+## Tech Stacks
 
-        Column Name | Type | Description
-        --- | --- | ---
-        id | int(11) | AUTO_INCREMENT
-        bill_id | int(11) | Unique bill id / number
-        name | varchar(255) | Name of the product
-        tax_code | int(11) | Tax Code of the product <br> 1 : Food & Beverage <br> 2 : Tobacco <br> 3 : Entertainment
-        price | double | Price of the product
-        created_date | bigint(26) | Created date in Unix timestamp
+### [Go](https://golang.org/)
 
-*\*Database and tables are created and checked (if exist) automatically when starting web app*
+Using golang as main programming language. Go is good for creating a simple service such as this since the compiled binary is very small (around 10 MB) which can be used to create a small docker container. Won't be using framework since this is a simple service and pretty sure won't be using all of the framework features. Using framework may also affect to compiling time and compiled binary size.
+
+### [PostgreSQL](https://postgresql.org/)
+
+Database to keep the user tax data. Since we already know the column needed to keep the data, we better use relational database.
+
+Table name: `tax`
+
+Column Name | Type | Description
+--- | --- | ---
+id | int | Primary key
+user_id | int | User's ID
+name | varchar | Tax item name
+tax_code | int | [Tax code category](#tax-code)
+price | numeric | Item price
+created_at | timestamp | Created date
+updated_at | timestamp | Updated date
+
+### [Docker](https://www.docker.com/) & [Docker compose](https://docs.docker.com/compose/)
+
+Quick and easy container management and deployment without installing the stack directly to local/server.
+
+## Calculation
+
+### Tax Code
+
+Code | Name
+--- | ---
+1 | Food & Beverage
+2 | Tobacco
+3 | Entertainment
+
+### Tax Calculation
+
+Food & Beverage
+
+- 10% of `price`
+- Refundable
+
+Tobacco
+
+- 10 + (2% of `price`)
+- Not refundable
+
+Entertainment
+
+- 0 < `price` < 100: tax-free
+- price >= 100: 1% of (`price` - 100)
+- Not refundable
